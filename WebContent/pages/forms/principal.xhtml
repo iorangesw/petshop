@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="/css/theme.css" />  
+	<title>fff</title>
+</h:head>
+<h:body>
+	<ui:composition template="/pages/layout/template.xhtml">
+		<ui:define name="main">
+			<h:form id="form">
+						<div style="clear: both; margin-bottom: 10px;">
+							<h:outputText value=" " />
+							<h:panelGrid columns="2" width="700" style="margin-bottom: 5px; background-color: #eee; padding: 5px; border: 1px solid #ddd;">
+								<f:facet name="">
+									CLIENTE - PET
+								</f:facet>
+								<p:dataTable var="cliente" value="#{tableBean.clientes}"
+									rowKey="#{cliente.model}" paginator="true" rows="10" tableStyle="font-size: 12px;"
+									selection="#{tableBean.selectedCliente}" selectionMode="single"
+									id="clientesTable">
+									
+									<p:ajax event="rowSelect" update=":form:display" oncomplete="clienteDialog.show()" />
+									
+									<p:column headerText="Nome Cliente" sortBy="#{cliente.nome}" filterBy="#{cliente.nome}" id="nome">
+            							#{cliente.nome}
+       								</p:column>
+
+									<p:column headerText="Nome Pet" sortBy="#{cliente.nomePet}"	filterBy="#{cliente.nomePet}" id="nomePet">
+            							#{cliente.nomePet}
+        							</p:column>
+        							
+        							<!-- <p:column headerText="Model" sortBy="#{cliente.model}"	filterBy="#{cliente.model}" id="model">
+            							#{cliente.model}
+       								</p:column>> -->
+								</p:dataTable>
+								
+								<p:panel id="display">
+									<p:graphicImage	value="/images/pets/#{tableBean.selectedCliente.nomePet}.jpg" style="float: center;" />
+								</p:panel>
+							</h:panelGrid>
+								<p:dialog header="Cliente Detail" 
+									widgetVar="clienteDialog"
+									resizable="false" 
+									width="200" 
+									showEffect="explode"
+									hideEffect="explode">
+									<h:panelGrid columns="2" cellpadding="4">
+										<f:facet name="header">
+											<p:graphicImage	value="/images/clientes/#{tableBean.selectedCliente.nomePet}.jpg" />
+										</f:facet>
+
+										<!-- <h:outputText value="Model:" />
+										<h:outputText value="#{tableBean.selectedCliente.model}"
+											id="model" /> -->
+
+										<h:outputText value="Manufacturer:" />
+										<h:outputText value="#{tableBean.selectedCliente.nomePet}"
+											id="nomePet" />
+
+										<h:outputText value="Nome:" />
+										<h:outputText value="#{tableBean.selectedCliente.nome}"
+											id="nome" />
+									</h:panelGrid>
+								</p:dialog>
+
+
+						</div>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

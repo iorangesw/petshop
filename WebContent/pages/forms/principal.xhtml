@@ -16,16 +16,13 @@
 			<h:form id="form">
 						<div style="clear: both; margin-bottom: 10px;">
 							<h:outputText value=" " />
-							<h:panelGrid columns="2" width="700" style="margin-bottom: 5px; background-color: #eee; padding: 5px; border: 1px solid #ddd;">
-								<f:facet name="">
-									CLIENTE - PET
-								</f:facet>
+							<h:panelGrid columns="2" width="100%">
 								<p:dataTable var="cliente" value="#{tableBean.clientes}"
 									rowKey="#{cliente.model}" paginator="true" rows="10" tableStyle="font-size: 12px;"
 									selection="#{tableBean.selectedCliente}" selectionMode="single"
 									id="clientesTable">
 									
-									<p:ajax event="rowSelect" update=":form:display" oncomplete="clienteDialog.show()" />
+									<p:ajax event="rowSelect" update=":form:foto"  />
 									
 									<p:column headerText="Nome Cliente" sortBy="#{cliente.nome}" filterBy="#{cliente.nome}" id="nome">
             							#{cliente.nome}
@@ -40,35 +37,8 @@
        								</p:column>> -->
 								</p:dataTable>
 								
-								<p:panel id="display">
-									<p:graphicImage	value="/images/pets/#{tableBean.selectedCliente.nomePet}.jpg" style="float: center;" />
-								</p:panel>
+								<p:graphicImage	value="/images/pets/#{tableBean.selectedCliente.nomePet}.jpg" id="foto"/>
 							</h:panelGrid>
-								<p:dialog header="Cliente Detail" 
-									widgetVar="clienteDialog"
-									resizable="false" 
-									width="200" 
-									showEffect="explode"
-									hideEffect="explode">
-									<h:panelGrid columns="2" cellpadding="4">
-										<f:facet name="header">
-											<p:graphicImage	value="/images/clientes/#{tableBean.selectedCliente.nomePet}.jpg" />
-										</f:facet>
-
-										<!-- <h:outputText value="Model:" />
-										<h:outputText value="#{tableBean.selectedCliente.model}"
-											id="model" /> -->
-
-										<h:outputText value="Manufacturer:" />
-										<h:outputText value="#{tableBean.selectedCliente.nomePet}"
-											id="nomePet" />
-
-										<h:outputText value="Nome:" />
-										<h:outputText value="#{tableBean.selectedCliente.nome}"
-											id="nome" />
-									</h:panelGrid>
-								</p:dialog>
-
 
 						</div>
 			</h:form>

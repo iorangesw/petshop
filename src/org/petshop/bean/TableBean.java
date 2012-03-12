@@ -32,7 +32,7 @@ public class TableBean implements Serializable {
 		nomes[9] = "Sarah";
 
 		pets = new String[10];
-		pets[0] = "Tutu";
+		pets[0] = "Toto";
 		pets[1] = "Bidu";
 		pets[2] = "Pretinha";
 		pets[3] = "Pan";

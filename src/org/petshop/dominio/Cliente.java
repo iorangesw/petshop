@@ -7,6 +7,10 @@ public class Cliente {
 	private String nomePet;
 	private String model;
 
+	public Cliente(){
+		
+	}
+	
 	public Cliente(String model, String nome, String nomePet) {
 		super();
 		this.model = model;

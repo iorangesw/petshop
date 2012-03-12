@@ -7,8 +7,13 @@ import java.util.UUID;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.petshop.dominio.Cliente;
+import org.petshop.service.ClienteService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 @SessionScoped
 @ManagedBean(name="tableBean")

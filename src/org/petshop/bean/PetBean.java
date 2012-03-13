@@ -4,24 +4,37 @@ import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletContext;
 
 import org.petshop.dominio.Pet;
 import org.petshop.service.PetService;
 import org.petshop.service.PetServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
-@ManagedBean(name="petBean")
+@ManagedBean(name = "petBean")
 @SessionScoped
 public class PetBean {
 
 	private Pet pet;
 	private Pet selectedPet;
-	private PetService petService = new PetServiceImpl();
+	private PetService petService;
 
-	public String cadastrarPet(){
+	public PetBean() {
+		WebApplicationContext context = WebApplicationContextUtils
+				.getRequiredWebApplicationContext((ServletContext) FacesContext
+						.getCurrentInstance().getExternalContext().getContext());
+		petService = context.getBean(PetService.class);
+	}
+
+	public String cadastrarPet() {
 		pet = new Pet();
 		return "/pages/forms/cadastrar_pet.xhtml";
 	}
-	
+
 	public Pet getPet() {
 		return pet;
 	}
@@ -33,17 +46,17 @@ public class PetBean {
 	public List<Pet> getPets() {
 		return petService.getAllPets();
 	}
-	
-	public void salvar(){
+
+	public void salvar() {
 		petService.save(pet);
 		cadastrarPet();
 	}
-	
-	public void editar(){
-		
+
+	public void editar() {
+
 	}
-	
-	public void excluir(){
+
+	public void excluir() {
 		petService.removePet(pet);
 		cadastrarPet();
 	}
@@ -55,5 +68,5 @@ public class PetBean {
 	public void setSelectedPet(Pet selectedPet) {
 		this.selectedPet = selectedPet;
 	}
-	
+
 }

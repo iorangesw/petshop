@@ -12,7 +12,7 @@
 <h:body>
 	<ui:composition template="/pages/layout/template.xhtml">
 		<ui:define name="main">
-			<h:form id="form">
+			<h:form id="formPrincipal">
 					<p:panel id="clientePet" columns="2" width="100%" header="Cliente - Pet" style="font-size: 12px;">
 					<h:panelGrid columns="2" width="100%">
 						<p:dataTable id="clientesTable"
@@ -23,7 +23,7 @@
 							tableStyle="font-size: 12px;"
 							selection="#{tableBean.selectedCliente}" 
 							selectionMode="single">
-							<p:ajax event="rowSelect" update=":form:foto :form:informacoes" />
+							<p:ajax event="rowSelect" update=":formPrincipal:foto :formPrincipal:informacoes" />
 							<p:column headerText="Nome Cliente" sortBy="#{cliente.nome}" filterBy="#{cliente.nome}" id="nome">
             					#{cliente.nome}
        						</p:column>

@@ -9,9 +9,18 @@
 
 	<h:form id="menuForm">
 		<p:accordionPanel effect="none" activeIndex="0" id="accordion" style="font-size: 12px;">
-			<p:tab title="Documentos" id="documentoTab">
-					<p:commandButton value="Cadastro" />
-					<p:commandButton value="Cadastro" />
+			<p:tab title="Cadastro" id="cadastroTab">
+				<h:panelGroup>
+					<li>
+						<h:commandLink action="#{clienteBean.cadastrarCliente}" value="Cadastrar Cliente" immediate="true"/>
+					</li>
+				</h:panelGroup>
+				<br/>
+				<h:panelGroup>
+					<li>
+						<h:commandLink action="#{clienteBean.cadastrarCliente}" value="Cadastrar Pet" immediate="true"/>
+					</li>
+				</h:panelGroup>
 				<div style="clear: both; margin-bottom: 10px;">
 					<h:outputText value=" " />
 				</div>
